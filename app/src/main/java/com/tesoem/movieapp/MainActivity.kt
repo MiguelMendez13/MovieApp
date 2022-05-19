@@ -83,10 +83,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                             nombres.add(getName.plus(" (" + getYear + ")"))
                             poster.add(image)
                         }
-                       
+
                         adapter.notifyDataSetChanged()
                     }
 
+                    
                     llamadaExitosa()
                 }else{
                     showError()
