@@ -64,30 +64,61 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                     val images = movies?.d ?: emptyList()
                     poster.clear()
                     nombres.clear()
-                    for(i in 0 until  images.count()){
+                    for(i in 0 until  images.count()) {
                         val getMovie = images[i].i
                         val getName = images[i].l
                         val getYear = images[i].y
-                        Log.d("nombre",getName)
-                        var image: String
-
+                        println(images[i].s)
                         try {
-                            image = getMovie.imageUrl
-                            println(image)
-                            nombres.add(getName.plus(" (" + getYear + ")"))
-                            poster.add(image)
-                        }
-                        catch (e: Exception){ 
-                            image = "https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"
-                            println(image)
-                            nombres.add(getName.plus(" (" + getYear + ")"))
-                            poster.add(image)
-                        }
+                            if ("Actor" in images[i].s || "Actress" in images[i].s) {}
 
-                        adapter.notifyDataSetChanged()
+                            else {
+                                Log.d("nombre", getName)
+                                //println(images[i])
+                                var image: String
+
+                                try {
+                                    image = getMovie.imageUrl
+                                    println(image)
+                                    nombres.add(getName.plus(" (" + getYear + ")"))
+                                    poster.add(image)
+                                }
+                                catch (e: Exception) {
+                                    image =
+                                        "https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"
+                                    println(image)
+                                    nombres.add(getName.plus(" (" + getYear + ")"))
+                                    poster.add(image)
+                                }
+
+                                adapter.notifyDataSetChanged()
+                            }
+                        }catch(e: Exception){
+                            Log.d("nombre", getName)
+                                //println(images[i])
+
+
+                            var image: String
+
+                            try {
+                                image = getMovie.imageUrl
+                                println(image)
+                                nombres.add(getName.plus(" (" + getYear + ")"))
+                                poster.add(image)
+                            }
+                            catch (e: Exception) {
+                                image = "https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"
+                                println(image)
+                                nombres.add(getName.plus(" (" + getYear + ")"))
+                                poster.add(image)
+                            }
+
+                            adapter.notifyDataSetChanged()
+
+                        }
                     }
 
-                    
+
                     llamadaExitosa()
                 }else{
                     showError()
