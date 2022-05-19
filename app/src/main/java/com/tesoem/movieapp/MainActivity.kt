@@ -69,9 +69,21 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                         val getName = images[i].l
                         val getYear = images[i].y
                         Log.d("nombre",getName)
-                        val image = getMovie.imageUrl
-                        nombres.add(getName.plus(" (" + getYear + ")"))
-                        poster.add(image)
+                        var image: String
+
+                        try {
+                            image = getMovie.imageUrl
+                            println(image)
+                            nombres.add(getName.plus(" (" + getYear + ")"))
+                            poster.add(image)
+                        }
+                        catch (e: Exception){ 
+                            image = "https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"
+                            println(image)
+                            nombres.add(getName.plus(" (" + getYear + ")"))
+                            poster.add(image)
+                        }
+                       
                         adapter.notifyDataSetChanged()
                     }
 
